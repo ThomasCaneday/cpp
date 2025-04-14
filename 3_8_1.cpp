@@ -43,7 +43,7 @@ int count(const std::string& s, char c) { // count occurrences of c in s
 void f() {
     std::string m = "Mary had a little lamb";
     int a_count = count(m, 'a');
-    std::cout << a_count << '\n';
+    std::cout << "a_count: " << a_count << '\n';
 }
 
 using Complex = std::complex<double>;
@@ -73,6 +73,12 @@ void f(std::list<Complex>& lc, std::vector<std::string>& vs, std::string s) {
     std::cout << i1 << '\n' << i2 << '\n' << i3 << '\n';
 }
 
+void g(char cs[], int sz) {
+    int i1 = std::count(&cs[0], &cs[sz], 'z'); // 'z's in array
+    int i2 = std::count(&cs[0], &cs[sz/2], 'z'); // 'z's in first half of array
+    std::cout << "g function\n" << "i1: " << i1 << '\n' << "i2: " << i2 << '\n';
+}
+
 int main() {
     // Initialize a vector of Entry objects with some duplicate values.
     std::vector<Entry> vec = {
@@ -97,6 +103,10 @@ int main() {
     }
     
     f();
+
+    char zs[6] ={'z', 'z', 'z', 'a', 'y', 'z'};
+    int x = 6;
+    g(zs, x);
 
     return 0;
 }
