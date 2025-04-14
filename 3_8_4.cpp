@@ -20,7 +20,7 @@ bool gt_42(const std::pair<const std::string, int>& r) {
 
 void f(std::map<std::string, int>& m) {
     typedef std::map<std::string, int>::const_iterator MI;
-    MI i = find_if(m.begin, m.end(), gt_42);
+    MI i = find_if(m.begin(), m.end(), gt_42);
 }
 
 void g(const std::map<std::string, int>& m) {
