@@ -29,6 +29,22 @@ void f(std::vector<Entry>& ve, std::list<Entry>& le) {
     std::unique_copy(ve.begin(), ve.end(), std::back_inserter(le));
 }
 
+int count(const std::string& s, char c) { // count occurrences of c in s
+    int n = 0;
+    std::string::const_iterator i = find(s.begin(), s.end(), c);
+    while (i != s.end()) {
+        ++n;
+        i = find(i+1, s.end(), c);
+    }
+    return n;
+}
+
+void f() {
+    std::string m = "Mary had a little lamb";
+    int a_count = count(m, 'a');
+    std::cout << a_count << '\n';
+}
+
 int main() {
     // Initialize a vector of Entry objects with some duplicate values.
     std::vector<Entry> vec = {
@@ -52,5 +68,7 @@ int main() {
         std::cout << "Name: " << entry.name << ", Number: " << entry.number << std::endl;
     }
     
+    f();
+
     return 0;
 }
