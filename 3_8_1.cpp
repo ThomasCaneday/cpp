@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <iterator>
+#include <complex>
 
 struct Entry {
     std::string name;
@@ -43,6 +44,33 @@ void f() {
     std::string m = "Mary had a little lamb";
     int a_count = count(m, 'a');
     std::cout << a_count << '\n';
+}
+
+using Complex = std::complex<double>;
+
+template<class C, class T> int count(const C& v, T val) {
+    typename C::const_iterator i = find(v.begin(), v.end(), val);
+    int n = 0;
+    while (i != v.end()) {
+        ++n;
+        ++i; // skip past the element we just found
+        i = find(i, v.end(), val);
+    }
+    return n;
+}
+
+void fUpdated(std::list<Complex>& lc, std::vector<std::string>& vs, std::string s) {
+    int i1 = count(lc, Complex(1,3));
+    int i2 = count(vs, "Diogenes");
+    int i3 = count(s, 'x');
+    std::cout << i1 << '\n' << i2 << '\n' << i3 << '\n';
+}
+
+void f(std::list<Complex>& lc, std::vector<std::string>& vs, std::string s) {
+    int i1 = count(lc.begin(), lc.end(), Complex(1,3));
+    int i2 = count(vs.begin(), vs.end(), "Diogenes");
+    int i3 = count(s.begin(), s.end(), 'x');
+    std::cout << i1 << '\n' << i2 << '\n' << i3 << '\n';
 }
 
 int main() {
